@@ -1,0 +1,67 @@
+server:
+  port: 8080
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:com/xxx/mapper/xml/*.xml
+  global-config:
+    db-config:
+      logic-delete-field: remove # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+    type-aliases-package: com.xxx.entity
+
+spring:
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/bilibili?useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 3000
+    lettuce:
+      pool:
+        max-wait: 16
+        max-active: 16
+        max-idle: 16
+        min-idle: 1
+    shutdown-timeout: 10000ms  # 关闭超时时间
+    database: 0
+
+  rabbitmq:
+    host: 192.168.40.130
+    port: 5672
+    virtual-host: /
+    username: guest
+    password: guest
+    listener:
+      simple:
+        prefetch: 1
+
+  mail:
+    host: smtp.qq.com
+    protocol: smtp
+    default-encoding: UTF-8
+    username: test.000@qq.com
+    password: qdsalzckgddabeig
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+jwt:
+  head: authorization
+
+publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCONSFnTWBlZl9HAdN/83+BANNLJze/Nq/+rekJAMvX1WVG/E5WO0x1DouTqoQe83Nqoce1bICDbxh18O6QEy+bqm95ra+CJcZqrI9oSAKg+bzUsLaTYxBRVDin7WaubXH8Eznj3zWELOyJJxJzrGzkzLyGsTc2S/YmdPw9tk+ewIDAQAB
+privateKey: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAII41IWdNYGVmX0cB03/zf4EA00snN782r/6t6QkAy9fVZUb8TlY7THUOi5OqhB7zc2qhx7VsgINvGHXw7pATL5uqb3mtr4Ilxmqsj2hIAqD5vNSwtpNjEFFUOKftZq5tcfwTOePfNYQs7IknEnOsbOTMvIaxNzZL9iZ0/D22T57AgMBAAECgYAfVL0NSL3O58d+Kng3dAyDyUNiFhHINN4Mwq3ceC2sACv/LDHlslefXYiCC7svLBpgGV9ZM+EYTWW9xMP60+2iqEVFc9nJCF+ZJU2l/0ZpX368yyiPBA8Vh5aVl1xIS+uouSkhEbx1etrYUhLvrm0+x1Jd9rDGd5QARMAJ4isbwQJBAPOOlS2TTrZPV+htxzh2YA++4q4M4BJzG6xWgxA8hHi2s1LBSDcTsR4dHX+R7knctKcWAQ10RV5QQbylG7iMlP0CQQCI3/gg7XQ40BwT+83eyPUKbgCjELsIWD6OhUOrPNOe1ntGXRaIHjbh9TbKARt22sGLElXTBIa4I2QRQttxIfbXAkBZSdpSvQBMQcY+hZBVmMAaxaYgnMPAv8ZTZdvipe0CvCf9nLI2ztdN7OqVjBBJr8niv2RfZFLSAqY23GjPPWqZAkAPUsurnAnb5miOUC1vGJ5eSYxmtRPLTl3KhN7bh9bFPIvWh8ti98b7KwG0QcV6W+k5EZdsJWCTstqcGBkLJFtHAkEA5zf0SIpK3bs832OuuUehXu+nESZeblJRWI98pE38eRuMqnomw0oetgZQrtzGkWGdwPPPSlLdTVfjNErU0RT9SA==
+

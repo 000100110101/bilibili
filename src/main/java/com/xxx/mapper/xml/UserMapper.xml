@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.mapper.UserMapper">
+
+    <insert id="insertToken">
+        insert into t_refreshToken(email,refreshToken) values (#{username},#{refreshToken})
+    </insert>
+
+    <delete id="removeToken">
+        delete from t_refreshToken where email = #{username}
+    </delete>
+
+    <select id="selectByToken" resultType="string">
+        select refreshToken from t_refreshToken where refreshToken = #{refreshToken}
+    </select>
+
+</mapper>
